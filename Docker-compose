@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7.19
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: "mytasker"
+      MYSQL_USER:  user
+      MYSQL_PASSWORD: user
+    ports: 
+      - 3306:3306
+
+  mytasker:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - 8080:8080
